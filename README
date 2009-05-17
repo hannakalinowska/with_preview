@@ -8,10 +8,16 @@ Available options:
 
     * :action – a controller action which takes data from the form and prepares a preview. Should be defined with :method => :put in config/routes.rb. Required.
     * :preview_container – id of DOM element which should display the preview. Defaults to [model_name]_preview. Must exist in DOM.
-    * :edit_container – id of DOM element which should disappear after clicking ‘Preview’ button. No default, optional.
+    * :edit_container – id of DOM element which should disappear after clicking ‘Preview’ button. Defaults to [model_name]_form_with_preview. If set to false, nothing will disappear. Optional.
     * :preview_button – id that will be given to ‘Preview’ button. Defaults to [model_name]_preview_button.
     * :edit_button – id that will be given to ‘Edit’ button. Defaults to [model_name]_edit_button.
     * :preview_label and :edit_label. Default to ‘Preview’ and ‘Edit’. Optional.
+
+
+Installation
+============
+
+script/plugin install git://github.com/squil/with_preview.git
 
 
 
