@@ -1,13 +1,16 @@
 WithPreview
 ===========
 
-Introduction goes here.
+This is my first plugin.
 
 
 Example
 =======
 
-Example goes here.
+<% form_for_with_preview(@entry, :preview => {:action => preview_entries_path, :preview_label => 'preview', :edit_label => 'edit'}, :html => {:id => 'form'}) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= f.submit 'Create' %>
+<% end %>
 
 
-Copyright (c) 2009 [name of plugin creator], released under the MIT license
+Copyright (c) 2009 squil, released under the MIT license
