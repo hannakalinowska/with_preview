@@ -28,7 +28,7 @@ module WithPreview
     preview_button = options[:preview][:preview_button] || "#{object_name}_preview_button"
     edit_button = options[:preview][:edit_button] || "#{object_name}_edit_button"
     preview_container = options[:preview][:preview_container] || "#{object_name}_preview"
-    edit_container = options[:preview][:edit_container] # "#{object_name}_form_with_preview" 
+    edit_container = options[:preview][:edit_container] || "#{object_name}_form_with_preview" unless options[:preview][:edit_container] == false
     form_id = "#{object_name}_form_id"
 
     options.reverse_merge!(:html => {:id => form_id})
