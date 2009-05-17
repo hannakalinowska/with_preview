@@ -1,14 +1,42 @@
 WithPreview
 ===========
 
-This is my first plugin.
+This plugin creates a view helper method, called form_for_with_preview. It accepts all form_for arguments and additionally needs a :preview => {} option (because otherwise it’s just plain form_for, right?)
+
+
+Available options:
+
+    * :action – a controller action which takes data from the form and prepares a preview. Should be defined with :method => :put in config/routes.rb. Required.
+    * :preview_container – id of DOM element which should display the preview. Defaults to [model_name]_preview. Must exist in DOM.
+    * :edit_container – id of DOM element which should disappear after clicking ‘Preview’ button. No default, optional.
+    * :preview_button – id that will be given to ‘Preview’ button. Defaults to [model_name]_preview_button.
+    * :edit_button – id that will be given to ‘Edit’ button. Defaults to [model_name]_edit_button.
+    * :preview_label and :edit_label. Default to ‘Preview’ and ‘Edit’. Optional.
+
 
 
 Example
 =======
 
-<% form_for_with_preview(@entry, :preview => {:action => preview_entries_path, :preview_label => 'preview', :edit_label => 'edit'}, :html => {:id => 'form'}) do |f| %>
-  <%= render :partial => 'form', :locals => {:f => f} %>
+<% form_for_with_preview(@entry, :preview => {
+  :action => preview_entries_path, 
+  :preview_label => 'preview', 
+  :edit_label => 'edit', 
+  :preview_container => 'entry_preview', 
+  :edit_container => 'entry_form_with_preview'}, 
+:html => {:id => 'form'}) do |f| %>
+  <div id="entry_form_with_preview">
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </p>
+  </div>
+  <div id="entry_preview"></div>
   <%= f.submit 'Create' %>
 <% end %>
 
